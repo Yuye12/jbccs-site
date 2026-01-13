@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBCCS Radio - Mistissini</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0056b3; /* 湖水蓝 */
+            --forest-green: #2d5a27; /* 森林绿 */
+            --cree-yellow: #ffcc00; /* 传统黄 */
+            --dark-grey: #333;
+            --light-bg: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--dark-grey);
+            background-color: var(--light-bg);
+        }
+
+        /* 导航栏 */
+        header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        /* 播放器区域 */
+        .live-player {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--cree-yellow);
+        }
+
+        .play-btn {
+            background: var(--cree-yellow);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .play-btn:hover { transform: scale(1.05); }
+
+        /* 核心版块 */
+        section { padding: 50px 10%; }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&q=80') center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* 节目展示 */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--forest-green);
+        }
+
+        /* 团队 */
+        .team-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .member { text-align: center; }
+        .member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-blue);
+        }
+
+        /* 表单 */
+        form {
+            display: grid;
+            gap: 15px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: var(--dark-grey);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><h1>JBCCS Radio 90.3 FM</h1></div>
+    <nav>
+        <a href="#programs">Programs</a>
+        <a href="#history">History</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Connecting Mistissini & Eeyou Istchee</h2>
+    <p>Voice of the North, Soul of the People</p>
+</section>
+
+<div class="live-player">
+    <h3><i class="fas fa-broadcast-tower"></i> Now Live: Speak Cree to Me</h3>
+    <button class="play-btn"><i class="fas fa-play"></i> Listen Live</button>
+    <p><small>90.3 FM | Online Streaming</small></p>
+</div>
+
+<section id="programs">
+    <h2 style="text-align:center">Featured Programs</h2>
+    <div class="program-grid">
+        <div class="card">
+            <h3><i class="fas fa-users"></i> John and Friends</h3>
+            <p>Community stories, local humor, and the best classic hits. Join John every morning.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-child"></i> Youth Cast</h3>
+            <p>Empowering the next generation. Music, culture, and topics that matter to our youth.</p>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-comments"></i> Speak Cree to Me</h3>
+            <p>Preserving our language. Lessons and conversations in Eeyou-Istchee.</p>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section id="history">
+    <h2>Our Journey</h2>
+    <p>JBCCS (James Bay Cree Cultural Education Centre) has been the heartbeat of Mistissini for decades. What started as a vision to preserve Cree culture through oral tradition has evolved into a modern broadcasting hub. We bridge the gap between our elders' wisdom and our youth's future.</p>
+</section>
+
+<section id="team" style="background-color: #fff;">
+    <h2 style="text-align:center">Meet Our Team</h2>
+    <div class="team-grid">
+        <div class="member">
+            <img src="https://via.placeholder.com/150" alt="John">
+            <h4>John</h4>
+            <p>Host - John & Friends</p>
+        </div>
+        <div class="member">
+            <img src="https://via.placeholder.com/150" alt="Team Member">
+            <h4>Cree Elder</h4>
+            <p>Language Consultant</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2 style="text-align:center">Contact Us</h2>
+    <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Song Request or Community Announcement"></textarea>
+        <button type="submit" class="play-btn" style="border-radius: 5px;">Send Message</button>
+    </form>
+    <div style="text-align:center; margin-top: 30px;">
+        <p><i class="fas fa-map-marker-alt"></i> Mistissini, Quebec G0W 1C0</p>
+        <p><i class="fas fa-phone"></i> (418) 923-XXXX</p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 JBCCS Radio Mistissini. Preserving Eeyou Culture.</p>
+</footer>
+
+</body>
+</html>
