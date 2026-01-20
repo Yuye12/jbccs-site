@@ -1,168 +1,196 @@
-<!DOCTYPE html>   
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JBCCS Radio - Mistissini</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>JBCCS Radio - Voice of Mistissini</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #004a99; /* 深度湖泊蓝 */
-            --cree-yellow: #ffb800;  /* 温暖晚霞金 */
-            --forest-green: #2d5a27; 
-            --dark-grey: #2c3e50;
-            --light-bg: #fdfdfd;
+            --brand-blue: #1a73e8;
+            --accent-gold: #ffc107;
+            --text-dark: #1d1d1f;
+            --glass-bg: rgba(255, 255, 255, 0.9);
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            color: var(--dark-grey);
-            background-color: var(--light-bg);
-        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background: #fff; color: var(--text-dark); scroll-behavior: smooth; }
 
+        /* 导航栏 - 磨砂效果 */
         header {
-            background: var(--primary-blue);
+            background: rgba(0, 74, 153, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 1.2rem 5%;
+            padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 2000;
         }
 
-        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        .logo h1 { margin: 0; font-size: 1.5rem; letter-spacing: 1px; }
+        nav a { color: white; text-decoration: none; margin-left: 30px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        nav a:hover { color: var(--accent-gold); }
 
+        /* 核心改进：大比例主图区 */
         .hero {
-            /* 这里使用了你上传的图片作为背景 */
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('hero.jpg') center/cover no-repeat;
-            height: 500px;
+            height: 85vh; /* 占据屏幕 85% 高度，视野更宽广 */
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('hero.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
-            padding: 0 20px;
+            padding-top: 80px;
         }
 
-        .hero h2 { font-size: 2.5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+        .hero h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 4rem; 
+            margin-bottom: 20px; 
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
 
-        .live-player {
-            background: #1a1a1a;
-            color: white;
-            padding: 30px;
-            text-align: center;
-            margin-top: -50px;
+        /* 悬浮播放器 - 参考 Canva 的现代感 */
+        .player-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
             width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-bottom: 6px solid var(--cree-yellow);
+            max-width: 900px;
+            margin: -80px auto 0;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            text-align: center;
+            position: relative;
+            z-index: 100;
+            border: 1px solid rgba(255,255,255,0.3);
         }
+
+        .status-tag { color: #ff4444; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
 
         .play-btn {
-            background: var(--cree-yellow);
+            background: var(--brand-blue);
+            color: white;
             border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
+            padding: 20px 60px;
+            border-radius: 100px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 184, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(26, 115, 232, 0.3);
         }
 
-        .play-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 184, 0, 0.6); }
+        .play-btn:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(26, 115, 232, 0.4); }
 
-        section { padding: 80px 10%; }
+        /* 节目板块 */
+        section { padding: 100px 8%; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-weight: 700; }
 
-        .program-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { 
+            background: #fff; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
         }
+        .card:hover { transform: translateY(-10px); border-color: var(--brand-blue); }
+        .card h3 { color: var(--brand-blue); margin-top: 0; }
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--primary-blue);
-            transition: transform 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); }
-
-        footer { background: var(--dark-grey); color: white; text-align: center; padding: 40px; }
+        /* 底部 */
+        footer { background: #111; color: #888; padding: 80px 8% 40px; text-align: center; }
+        .footer-logo { color: #fff; font-size: 1.5rem; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"><h1>JBCCS Radio 90.3 FM</h1></div>
+    <div class="logo"><h1>JBCCS RADIO</h1></div>
     <nav>
         <a href="#programs">Programs</a>
-        <a href="#history">History</a>
+        <a href="#history">Our Mission</a>
         <a href="#team">Team</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<section class="hero">
-    <h2>Connecting Mistissini & Eeyou Istchee</h2>
-    <p style="font-size: 1.2rem;">Voice of the North, Soul of the People</p>
-</section>
+<div class="hero">
+    <h2>Voice of the North</h2>
+    <p style="font-size: 1.4rem; font-weight: 300; opacity: 0.9;">Preserving Cree Language & Culture since 1993</p>
+</div>
 
-<div class="live-player">
-    <p style="text-transform: uppercase; letter-spacing: 2px; color: #aaa; margin-bottom: 10px;">Now Broadcasting</p>
-    <h3 style="font-size: 1.8rem; margin-top: 0;"><i class="fas fa-broadcast-tower" style="color: #ff4444;"></i> Speak Cree to Me</h3>
-    <button class="play-btn" onclick="togglePlay()"><i class="fas fa-play"></i> Listen Live</button>
+<div class="player-box">
+    <div class="status-tag">● Live Now</div>
+    <h3 style="font-size: 2rem; margin: 15px 0;">John & Friends</h3>
+    <p style="color: #666; margin-bottom: 25px;">Tune in for community news, stories, and classic hits.</p>
+    <button class="play-btn" onclick="togglePlay()" id="mainBtn">
+        <i class="fas fa-play"></i> LISTEN LIVE 90.3
+    </button>
 </div>
 
 <section id="programs">
-    <h2 style="text-align:center; font-size: 2rem;">Featured Programs</h2>
-    <div class="program-grid">
-        <div class="card">
-            <h3>John and Friends</h3>
-            <p>Community stories, local humor, and the best classic hits. Join John every morning for a fresh start.</p>
-        </div>
+    <div class="section-title">Current Productions</div>
+    <div class="grid">
         <div class="card">
             <h3>Youth Cast</h3>
-            <p>Empowering the next generation. Music, culture, and topics that matter to the youth of Mistissini.</p>
+            <p>Empowering the next generation. Join our youth hosts every week as they discuss music, future, and Eeyou Istchee.</p>
+        </div>
+        <div class="card">
+            <h3>John & Friends</h3>
+            <p>The morning heartbeat of Mistissini. Local humor, elder interviews, and community announcements.</p>
         </div>
         <div class="card">
             <h3>Speak Cree to Me</h3>
-            <p>Preserving our sacred language. Engaging lessons and conversations in Eeyou-Istchee for everyone.</p>
+            <p>Our flagship language program. Learning through conversation, song, and traditional storytelling.</p>
         </div>
     </div>
 </section>
 
-<section id="history" style="background-color: #f0f4f8; border-radius: 20px; margin: 0 5%;">
-    <div style="max-width: 800px; margin: auto; text-align: center;">
-        <h2>Our Heritage</h2>
-        <p>JBCCS (James Bay Cree Cultural Education Centre) is more than just a radio station. We are the heartbeat of Mistissini, bridging the gap between our elders' wisdom and our youth's future. For decades, we have been dedicated to the preservation of Cree language and the enrichment of our community's cultural life.</p>
-    </div>
+<section id="history" style="background: #f8f9fa;">
+    <div class="section-title">Our Mission</div>
+    <p style="max-width: 800px; margin: 0 auto; line-height: 2; font-size: 1.2rem; text-align: center;">
+        JBCCS exists to empower and unite Cree communities through 24/7 Cree-language broadcasting—sharing daily news, music, stories, and health advice.
+    </p>
 </section>
 
-<footer id="contact">
-    <p style="font-size: 1.2rem; margin-bottom: 20px;">JBCCS Radio - Mistissini, Quebec</p>
-    <div style="margin-bottom: 20px;">
-        <i class="fab fa-facebook" style="font-size: 2rem; margin: 0 15px; cursor: pointer;"></i>
-        <i class="fas fa-envelope" style="font-size: 2rem; margin: 0 15px; cursor: pointer;"></i>
-    </div>
-    <p>&copy; 2026 JBCCS Radio. Proudly preserving Eeyou Culture.</p>
+<footer>
+    <div class="footer-logo">JBCCS RADIO 90.3 FM</div>
+    <p>Mistissini, Quebec G0W 1C0</p>
+    <hr style="opacity: 0.1; margin: 40px 0;">
+    <p style="font-size: 0.8rem;">&copy; 2026 JBCCS Radio. Built for the Cree Nation.</p>
 </footer>
 
 <script>
+    // 💡 提示：拿到流媒体链接后，填在下面的引号里
+    var streamUrl = "http://YOUR_RADIO_STREAM_LINK"; 
+    var audio = new Audio(streamUrl);
+    var isPlaying = false;
+
     function togglePlay() {
-        alert("Streaming URL needed! Please provide your station's stream link to enable live audio.");
+        var btn = document.getElementById('mainBtn');
+        if (streamUrl.includes("YOUR_RADIO_STREAM_LINK")) {
+            alert("Streaming URL needed! 我们需要真实的 FM 流链接才能听到声音哦。");
+            return;
+        }
+
+        if (!isPlaying) {
+            audio.play();
+            btn.innerHTML = '<i class="fas fa-pause"></i> STOP LISTENING';
+            isPlaying = true;
+        } else {
+            audio.pause();
+            btn.innerHTML = '<i class="fas fa-play"></i> LISTEN LIVE 90.3';
+            isPlaying = false;
+        }
     }
 </script>
 
